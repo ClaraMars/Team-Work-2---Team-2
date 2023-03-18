@@ -11,7 +11,9 @@ const randomNumbers = (max, min) => {
 // “Cross the road”, en caso contrario mostrar:
 // “Please wait”.
 
+// start the arrow func.
 const a1e4 = () => {
+  // set the Array constant isGreen with colors values
   const isGreen = [
     "yellow",
     "yellow",
@@ -24,14 +26,19 @@ const a1e4 = () => {
     "red",
     "green"
   ];
+  // create a looping true to read the colors inside the array
   for (let i = 0; i < isGreen.length; i++) {
+    // this constant color is to save the array values readed
+    const color = isGreen[i];
+    // if statement to check the traffic color and display a message
     if (isGreen[i] === "green") {
       console.log("Cross the road");
     } else if(isGreen[i] === "red") {
-      console.log(i, "Please wait");
+      console.log(`Please wait (${i})`);
     }else{
-      console.log(i, "Be careful");
+      console.log(`Be cautious (${i})`);
     }
   }
 };
+// call the arrow function
 a1e4();
