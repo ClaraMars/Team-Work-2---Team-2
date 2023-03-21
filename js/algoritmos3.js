@@ -1,3 +1,5 @@
+// --------------------------------------------------------
+
 /*1. Ejercicio
 Escribe un programa que pregunte al usuario los límites máximo y mínimo, 
 y genere un array de 20 números aleatorios entre esos valores, 
@@ -39,7 +41,7 @@ function pad(num, size) {
   const minValue = Math.min(...array);
   const maxValue = Math.max(...array);
 
-// 
+// add leading zeros to the number
   let resultMin = pad(minValue, 3);
   let resultMax = pad(maxValue, 3);
 
@@ -47,4 +49,26 @@ function pad(num, size) {
   console.log(`min value: ${resultMin}`);
   console.log(`max value: ${resultMax}`);
 };
-a3e1();
+// a3e1();
+
+// --------------------------------------------------------
+
+/* 7. Ejercicio
+Escribe un programa que genera 100 números aleatorios, entre 0 y 500, y los almacena en un array. A continuación filtra todos los números impares, ordenando los pares de mayor a menor.
+*/
+const a3e7 = () => {
+let min = 0;
+let max = 500;
+ // Generate tweenty integer random numbers
+ const array = Array.from({ length: 100 }, () =>
+ Math.floor(Math.random() * (max - min + 1) + min)
+);
+console.log(array);
+
+// Filter even numbers and sort in descending order
+let pair = array.filter(n => n%2 === 0)
+let pairSorted = pair.sort((a, b) => b - a);
+console.log(pairSorted);
+};
+
+a3e7();
