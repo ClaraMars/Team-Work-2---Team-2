@@ -37,18 +37,20 @@ function pad(num, size) {
   array[0] = min;
   array[19] = max;
   console.log(array);
+
   // Read the highest number and the smaller number inside the array using (...) => spread operator.
-  const minValue = Math.min(...array);
-  const maxValue = Math.max(...array);
+//   const minValue = Math.min(...array);
+//   const maxValue = Math.max(...array);
 
 // add leading zeros to the number
-  let resultMin = pad(minValue, 3);
-  let resultMax = pad(maxValue, 3);
+  let resultMin = pad(min, 3);
+  let resultMax = pad(max, 3);
 
   // Logged the result
   console.log(`min value: ${resultMin}`);
   console.log(`max value: ${resultMax}`);
 };
+// call the arrow function a3e1
 // a3e1();
 
 // --------------------------------------------------------
@@ -70,5 +72,5 @@ let pair = array.filter(n => n%2 === 0)
 let pairSorted = pair.sort((a, b) => b - a);
 console.log(pairSorted);
 };
-
+// call the arrow function a3e7
 a3e7();
