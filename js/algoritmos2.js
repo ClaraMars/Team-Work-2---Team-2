@@ -42,7 +42,9 @@ Después de los string requeridos, el programa mostrará las siguientes líneas:
 
 // start the arrow func.
 const a1e10 = () => {
-  function stringManager(str, operations) {}
+  function stringManager(str, operations) {
+
+  }
   const strOps = {
     replaceChars: function (str, operations) {
       operations = str;
@@ -71,9 +73,14 @@ const a1e10 = () => {
       return (str = result);
     },
     replaceSpaces: function (str, operations) {
-
+      operations = str;
+      let result = operations.replaceAll(" ", ",");
+      return (str = result);
     },
-
+    // declaración de variables que se utilizarán en el programa
+  exit: false, // flag que determina si se cierra el programa
+  op: -1, // la operación matemática que elige el usuario
+  // agrupamos las posibles operaciones a realizar
     // the replacement text options
     options: [
       "Replace chars by signs?",
@@ -87,6 +94,10 @@ const a1e10 = () => {
   };
 
   // take input
-  const str = prompt("Write the text here: ");
+  str = prompt("Write the text here: ");
+// ------------------------------------------------
+
+
+  
 };
 a1e10();
