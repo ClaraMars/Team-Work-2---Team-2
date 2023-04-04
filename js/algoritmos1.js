@@ -1,7 +1,7 @@
 const randomNumbers = (max, min) => {
     let random = Math.floor(Math.random() * (max - min + 1) + min);
     return random;
-};   
+};
 
 //Ejercicio 5
 // Teniendo en cuenta las siguientes temperaturas:
@@ -81,39 +81,77 @@ const a1e5 = () => {
 // • El DNI está formado por ocho dígitos y un carácter alfabético de control. Ejemplo: 12345678ª.
 // ** Consultar la tabla ASCII para poder resolver el ejercicio. **
 
+//SOLUCIÓN SIN BUCLE
 // const a1e9 = () => {
 
-//     let document = prompt("Por favor, introduce tu DNI o NIE:");
-//     let docLenght = document.lenght;
+//     let document = prompt("Por favor, introduce tu DNI o NIE");
+//     console.log(document);
 
-//     if (docLenght == 9) {
-//         if (document ) {
-            
+//     if (document.length == 9) {
+
+//         let initial = document.slice(0, 1);
+//         let medium = document.slice(1, 8);
+//         let final = document.slice(8);
+        
+//         let nieInitial = /(X|T){1}/;
+//         let dniInitial = /[0-9]{1}/;
+
+//         let docMedium = /[0-9]{7}/g;
+
+//         let nieFinal = /[A-Z]{1}/;
+//         let dniFinal = final.charCodeAt(0);
+
+//         if (nieInitial.test(initial) == true && docMedium.test(medium) == true && nieFinal.test(final) == true) {
+//            console.log('El NIE introducido es correcto!');      
+//         } else if (dniInitial.test(initial) == true && docMedium.test(medium) == true && (dniFinal >= 32 && dniFinal <= 167)) {
+//            console.log('El DNI introducido es correcto!');
 //         } else {
-            
+//             console.log("Por favor, revise los datos. El dato introducido no se corresponde con un DNI o NIE válido.");
 //         }
 //     } else {
-//         console.log("Los datos introducidos no son correctos. Por favor, revisa los datos.")
+//         alert("Por favor, revise los datos. El dato introducido no es correcto.");
 //     }
-
-    
 // }
 
+// a1e9();
+
+
+//SOLUCIÓN CON BUCLE
 const a1e9 = () => {
 
-    let dni = prompt("Por favor, introduce tu DNI:");
-    let nie = prompt("Por favor, introduce tu NIE:");
+    let document = "";
+    let finalDoc = false;
 
+    do {
+        document = prompt("Introduce tu DNI o NIE:");
 
-    if (dni.startsWith(!X) || dni.startsWith(!T) == 9) {
-        if (document ) {
-            
+        let initial = document.slice (0, 1);
+        let medium = document.slice(1, 8);
+        let final = document.slice(8);
+        
+        
+        if (document.length !== 9) {
+            console.log("Por favor, revise los datos. El dato introducido no es correcto.");
         } else {
-            
-        }
-    } else {
-        console.log("Los datos introducidos no son correctos. Por favor, revisa los datos.")
-    }
 
-    
+            let numbers = /[0-9]{7}/;
+
+            let nieFinal = /[A-Z]{1}/;
+            
+            let dniInitial = /[0-9]{1}/;
+            let dniFinal = final.charCodeAt(0);
+            
+            if ((document.startsWith("X", 0) || document.startsWith("T", 0)) && numbers.test(medium) == true && nieFinal.test(final) == true) {
+                console.log("El NIE introducido es correcto!");
+                finalDoc = true;
+            } else if (dniInitial.test(initial) == true && numbers.test(medium) == true && (dniFinal >= 65 && dniFinal <= 90)) {
+                console.log("El DNI introducido es correcto!");
+                finalDoc = true;
+            } else {
+                console.log("Los datos introducidos no se corresponden con un DNI o NIE válido.")
+            }
+        }
+    } while (finalDoc !== true);
 }
+
+// a1e9();
