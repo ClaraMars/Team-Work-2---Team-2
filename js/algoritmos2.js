@@ -41,63 +41,99 @@ Después de los string requeridos, el programa mostrará las siguientes líneas:
 • work done in 750 miliseconds */
 
 // start the arrow func.
-const a1e10 = () => {
-  function stringManager(str, operations) {
+const a2e5 = () => {
+  /* let stringTest =
+     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non iusto cumque eveniet odit molestiae beatae eius. 
+  Sit hic unde at recusandae natus eligendi, dolorum quasi! Ipsam, tempore perspiciatis obcaecati magni, reprehenderit 
+  corporis quaerat at doloremque, ipsa suscipit libero aliquid. Magni,
+  sunt! Soluta quibusdam praesentium repudiandae totam laudantium ullam eum est?";*/
+  function stringManager(text, option) {
+    // take the text input
+    text = prompt("Write here your text!");
 
-  }
-  const strOps = {
-    replaceChars: function (str, operations) {
-      operations = str;
-      let result = operations
-        .replace(/a/g, "@")
-        .replace(/e/g, "3")
-        .replace(/i/g, "1")
-        .replace(/o/g, "0")
-        .replace(/s/g, "$");
-      return (str = result);
-    },
+    const transformOps = {
+      replaceChars: false,
+      capitalize: false,
+      replaceSpaces: false,
+    };
 
-    capitalize: function (str, operations) {
-      operations = str;
-      /*The charAt() function returns the character at a given position in a string.
+    while (true) {
+      option = prompt(
+        `Choose an option:
+      1. Replace chars by signs?
+      2. Capitalize?
+      3. Replace spaces with commas?
+      Enter '0' to finish.`
+      );
+      if (option === null) {
+        // User clicked "cancel"
+        alert("Operation canceled.");
+        break;
+      }
+      switch (option.toLowerCase()) {
+        case "1":
+          transformOps.replaceChars = true;
+          break;
+        case "2":
+          transformOps.capitalize = true;
+          break;
+        case "3":
+          transformOps.replaceSpaces = true;
+          break;
+        case "0":
+          break;
+        default:
+          alert("Invalid option.");
+          continue;
+      }
+      const changes = `Options chose:
+    Replace chars by signs? ${transformOps.replaceChars}
+    Capitalize? ${transformOps.capitalize}
+    Replace spaces with commas? ${transformOps.replaceSpaces}
+    Is it ok?`;
+
+      const confirmed = confirm(changes);
+      if (!confirmed) {
+        break;
+      }
+    }
+
+    // Define operations object
+    const strOps = {
+      replaceChars: function (text) {
+        // Replace characters
+        let result = text
+          .replace(/a/g, "@")
+          .replace(/e/g, "3")
+          .replace(/i/g, "1")
+          .replace(/o/g, "0")
+          .replace(/s/g, "$");
+
+        return result;
+      },
+
+      capitalize: function (text) {
+        // Capitalize words
+        /*The charAt() function returns the character at a given position in a string.
       The toUpperCase() function converts all the characters of an input string to uppercase.
       This function slices a given string from a specified “start” position until the specified “end” position.
       const arrStr split the above operations into an array of strings between a blankspace*/
-      const arrStr = operations.split(" ");
-      //    let result = operations.charAt(0).toUpperCase() + operations.slice(1);
-      for (let i = 0; i < arrStr.length; i++) {
-        arrStr[i] = arrStr[i].charAt(0).toUpperCase() + arrStr[i].slice(1);
-      }
-      // let result = arrStr.join(" ") join all the elements back into a string
-      let result = arrStr.join(" ");
-      return (str = result);
-    },
-    replaceSpaces: function (str, operations) {
-      operations = str;
-      let result = operations.replaceAll(" ", ",");
-      return (str = result);
-    },
-    // declaración de variables que se utilizarán en el programa
-  exit: false, // flag que determina si se cierra el programa
-  op: -1, // la operación matemática que elige el usuario
-  // agrupamos las posibles operaciones a realizar
-    // the replacement text options
-    options: [
-      "Replace chars by signs?",
-      "Capitalize?",
-      "Replace spaces with commas?",
-    ],
-
-    // variables
-    str: undefined,
-    operations: undefined,
-  };
-
-  // take input
-  str = prompt("Write the text here: ");
-// ------------------------------------------------
-
-
-  
+        const arrStr = text.split(" ");
+        //    let result = operations.charAt(0).toUpperCase() + operations.slice(1);
+        for (let i = 0; i < arrStr.length; i++) {
+          arrStr[i] = arrStr[i].charAt(0).toUpperCase() + arrStr[i].slice(1);
+        }
+        // let result = arrStr.join(" ") join all the elements back into a string
+        let result = arrStr.join(" ");
+        return result;
+      },
+      replaceSpaces: function (text) {
+        // Replace spaces with commas
+        let result = text.replaceAll(" ", ",");
+        return result;
+      },
+    };
+  }
+  stringManager();
 };
-a1e10();
+a2e5();
