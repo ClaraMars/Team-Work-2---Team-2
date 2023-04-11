@@ -48,14 +48,13 @@ const a2e5 = () => {
   corporis quaerat at doloremque, ipsa suscipit libero aliquid. Magni,
   sunt! Soluta quibusdam praesentium repudiandae totam laudantium ullam eum est?";*/
   function stringManager(text, option) {
-    // take the text input
-    text = prompt("Write here your text!");
-
     const transformOps = {
       replaceChars: false,
       capitalize: false,
       replaceSpaces: false,
     };
+    // take the text input
+    text = prompt("Write here your text!");
 
     while (true) {
       option = prompt(
@@ -69,29 +68,31 @@ const a2e5 = () => {
         // User clicked "cancel"
         alert("Operation canceled.");
         break;
+      }else if (option === "0"){
+        // User clicked "finished"
+        alert("Operation complete.");
       }
       switch (option.toLowerCase()) {
         case "1":
           transformOps.replaceChars = true;
           break;
-        case "2":
-          transformOps.capitalize = true;
-          break;
-        case "3":
-          transformOps.replaceSpaces = true;
-          break;
-        case "0":
-          break;
-        default:
-          alert("Invalid option.");
-          continue;
-      }
-      const changes = `Options chose:
-    Replace chars by signs? ${transformOps.replaceChars}
-    Capitalize? ${transformOps.capitalize}
-    Replace spaces with commas? ${transformOps.replaceSpaces}
-    Is it ok?`;
-
+          case "2":
+            transformOps.capitalize = true;
+            break;
+            case "3":
+              transformOps.replaceSpaces = true;
+              break;
+              default:
+                alert("Invalid option.");
+                continue;
+              }
+              const changes = `Options chose:
+              Replace chars by signs? ${transformOps.replaceChars}
+              Capitalize? ${transformOps.capitalize}
+              Replace spaces with commas? ${transformOps.replaceSpaces}
+              Is it ok? `;
+              
+              
       const confirmed = confirm(changes);
       if (!confirmed) {
         break;
@@ -133,6 +134,51 @@ const a2e5 = () => {
         return result;
       },
     };
+
+    let result = text;
+    // Perform string manipulation
+    const startTime = performance.now();
+
+    // Output results
+    console.log(`Original string: ${text}`);
+    if (transformOps.replaceChars) {
+      result = strOps.replaceChars(result);
+      console.log(`Modified string with replaceChars: ${result}`);
+    }
+    if (transformOps.capitalize) {
+      result = strOps.capitalize(result);
+      console.log(`Modified string with capitalize: ${result}`);
+    }
+    if (transformOps.replaceSpaces) {
+      result = strOps.replaceSpaces(result);
+      console.log(`Modified string with replaceSpace: ${result}`);
+    }
+    const endTime = performance.now();
+    const elapsedTime = endTime - startTime;
+
+    console.log(`Elapsed time: ${elapsedTime} milliseconds`);
+    
+    // Count words and characters
+    const wordCount = text.split(" ").length;
+    const charCount = text.length;
+    console.log(`${wordCount} words, ${charCount} char.`);
+    return result;
+    
+    // let result = str;
+    // if (replaceCharsOption) {
+      //   result = replaceChars(result);
+    // }
+    // if (capitalizeOption) {
+      //   result = capitalize(result);
+      // }
+      // if (replaceSpacesOption) {
+        //   result = replaceSpaces(result);
+        // }
+        
+       
+        
+        
+        
   }
   stringManager();
 };
