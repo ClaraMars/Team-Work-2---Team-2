@@ -12,13 +12,12 @@ const a3e1 = () => {
   function pad(num, size) {
     if (num < 0) {
       // check if the number is negative
-      const withoutMinus = String(num).slice(1); // remove the minus sign from the number
-      return "-" + withoutMinus.padStart(size, "0"); // add leading zeros to the positive absolute value and re-add the minus sign
+      const withoutMinus = String(num).slice(1);
+      return "-" + withoutMinus.padStart(size, "0"); 
     }
-    return String(num).padStart(size, "0"); // add leading zeros to the number
+    return String(num).padStart(size, "0");
   }
   // User input maximum and minimum value
-  // added isNan to check if the user enters a non-numeric value.
   let min, max;
   while (true) {
     min = prompt("Enter the minimum value:");
