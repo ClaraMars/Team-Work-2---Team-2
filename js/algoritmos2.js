@@ -42,20 +42,23 @@ Después de los string requeridos, el programa mostrará las siguientes líneas:
 
 // start the arrow func.
 const a2e5 = () => {
-  /* let stringTest =
-     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non iusto cumque eveniet odit molestiae beatae eius. 
-  Sit hic unde at recusandae natus eligendi, dolorum quasi! Ipsam, tempore perspiciatis obcaecati magni, reprehenderit 
-  corporis quaerat at doloremque, ipsa suscipit libero aliquid. Magni,
-  sunt! Soluta quibusdam praesentium repudiandae totam laudantium ullam eum est?";*/
+  /*let stringTest = 
+     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic id facere repellendus quisquam accusamus expedita, non nobis iste, soluta maiores, fuga sunt aspernatur asperiores iusto quidem autem earum temporibus totam aperiam magni rerum alias minima? Nemo laborum deserunt, dolore voluptatem, corporis nam culpa iste odit possimus soluta, fuga non earum?"*/
   function stringManager(text, option) {
+
+    // take the text input and check if the text was input
+    text = prompt("Write here your text!");
+
+    if (text === "" || text === null){
+      alert("Sorry, you forgote to add a text, the operation is canceled");
+      return -1
+    } 
+    // Operations option
     const transformOps = {
       replaceChars: false,
       capitalize: false,
       replaceSpaces: false,
     };
-    // take the text input
-    text = prompt("Write here your text!");
-
     while (true) {
       option = prompt(
         `Choose an option:
@@ -69,8 +72,9 @@ const a2e5 = () => {
         alert("Operation canceled.");
         break;
       }else if (option === "0"){
-        // User clicked "finished"
+        // User choose  "0" to "finished"
         alert("Operation complete.");
+        break;
       }
       switch (option.toLowerCase()) {
         case "1":
@@ -92,11 +96,10 @@ const a2e5 = () => {
               Replace spaces with commas? ${transformOps.replaceSpaces}
               Is it ok? `;
               
-              
-      const confirmed = confirm(changes);
-      if (!confirmed) {
-        break;
-      }
+        const confirmed = confirm(changes); // "confirm" is a dialog box with a message Ok or Cancel
+              if (!confirmed) {
+              break;
+            }
     }
 
     // Define operations object
@@ -120,7 +123,6 @@ const a2e5 = () => {
       This function slices a given string from a specified “start” position until the specified “end” position.
       const arrStr split the above operations into an array of strings between a blankspace*/
         const arrStr = text.split(" ");
-        //    let result = operations.charAt(0).toUpperCase() + operations.slice(1);
         for (let i = 0; i < arrStr.length; i++) {
           arrStr[i] = arrStr[i].charAt(0).toUpperCase() + arrStr[i].slice(1);
         }
@@ -128,57 +130,49 @@ const a2e5 = () => {
         let result = arrStr.join(" ");
         return result;
       },
+
       replaceSpaces: function (text) {
-        // Replace spaces with commas
-        let result = text.replaceAll(" ", ",");
+        // Replace spaces with commas, unless there is a comma or a dot already in the word
+        let result = text.split(" ").map(word => { // used map to iterate over the array
+          if (word.includes(",") || word.includes(".")) {
+            return word;
+          } else {
+            return word + ",";
+          }
+        }).join(" ");
         return result;
-      },
+      }
     };
 
     let result = text;
-    // Perform string manipulation
+    // Perform string manipulation Start
     const startTime = performance.now();
 
     // Output results
     console.log(`Original string: ${text}`);
     if (transformOps.replaceChars) {
-      result = strOps.replaceChars(result);
-      console.log(`Modified string with replaceChars: ${result}`);
+      text = strOps.replaceChars(result);
+      console.log(`Modified string with replaceChars: ${text}`);
     }
     if (transformOps.capitalize) {
-      result = strOps.capitalize(result);
-      console.log(`Modified string with capitalize: ${result}`);
+      text = strOps.capitalize(result);
+      console.log(`Modified string with capitalize: ${text}`);
     }
     if (transformOps.replaceSpaces) {
-      result = strOps.replaceSpaces(result);
-      console.log(`Modified string with replaceSpace: ${result}`);
+      text = strOps.replaceSpaces(result);
+      console.log(`Modified string with replaceSpace: ${text}`);
     }
+    // Perform string manipulation End
     const endTime = performance.now();
-    const elapsedTime = endTime - startTime;
+    const timeOut = endTime - startTime;
 
-    console.log(`Elapsed time: ${elapsedTime} milliseconds`);
     
     // Count words and characters
     const wordCount = text.split(" ").length;
     const charCount = text.length;
     console.log(`${wordCount} words, ${charCount} char.`);
-    return result;
-    
-    // let result = str;
-    // if (replaceCharsOption) {
-      //   result = replaceChars(result);
-    // }
-    // if (capitalizeOption) {
-      //   result = capitalize(result);
-      // }
-      // if (replaceSpacesOption) {
-        //   result = replaceSpaces(result);
-        // }
-        
-       
-        
-        
-        
+    console.log(`Elapsed time: ${timeOut} milliseconds`);
+    return result;   
   }
   stringManager();
 };
