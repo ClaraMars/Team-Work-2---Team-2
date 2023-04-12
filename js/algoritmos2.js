@@ -96,7 +96,7 @@ const a2e5 = () => {
               Replace spaces with commas? ${transformOps.replaceSpaces}
               Is it ok? `;
               
-        const confirmed = confirm(changes); // "confirm" is a dialog box with a message Ok or Cancel
+        const confirmed = confirm(changes);
               if (!confirmed) {
               break;
             }
@@ -118,10 +118,6 @@ const a2e5 = () => {
 
       capitalize: function (text) {
         // Capitalize words
-        /*The charAt() function returns the character at a given position in a string.
-      The toUpperCase() function converts all the characters of an input string to uppercase.
-      This function slices a given string from a specified “start” position until the specified “end” position.
-      const arrStr split the above operations into an array of strings between a blankspace*/
         const arrStr = text.split(" ");
         for (let i = 0; i < arrStr.length; i++) {
           arrStr[i] = arrStr[i].charAt(0).toUpperCase() + arrStr[i].slice(1);
@@ -133,7 +129,7 @@ const a2e5 = () => {
 
       replaceSpaces: function (text) {
         // Replace spaces with commas, unless there is a comma or a dot already in the word
-        let result = text.split(" ").map(word => { // used map to iterate over the array
+        let result = text.split(" ").map(word => { 
           if (word.includes(",") || word.includes(".")) {
             return word;
           } else {

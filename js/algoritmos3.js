@@ -10,10 +10,6 @@ dentro del array, con el siguiente formato (por consola):
 const a3e1 = () => {
   // function to add a leading 0 for positive and negative numbers
   function pad(num, size) {
-    /*This if statement to check if a negative number is provided to the function. If it is, 
-    it removes the minus sign from the number, then uses the padStart method to add leading zeros 
-    to the positive absolute value, and re-adds the minus sign. If the number is positive, it simply 
-    uses the padStart method to add leading zeros to the number. */
     if (num < 0) {
       // check if the number is negative
       const withoutMinus = String(num).slice(1); // remove the minus sign from the number
@@ -28,7 +24,7 @@ const a3e1 = () => {
     min = prompt("Enter the minimum value:");
     max = prompt("Enter the maximum value:");
   
-    if (!isNaN(min) && !isNaN(max)) { // check if both values are numbers
+    if (!isNaN(min) && !isNaN(max)) { 
       min = parseInt(min);
       max = parseInt(max);
       break;
