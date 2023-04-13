@@ -131,20 +131,7 @@ const a2e5 = () => {
 
       replaceSpaces: function (text) {
         // Replace spaces with commas, unless there is a comma or a dot already in the word
-        let result = text
-          .split(" ")
-          .map((word) => {
-            if (
-              word.includes(",") ||
-              word.includes(".") ||
-              word.includes("?")
-            ) {
-              return word;
-            } else {
-              return word + ",";
-            }
-          })
-          .join("");
+        let result = text.replace(/([\.?!,])\s/g, "$1").replace(/\s/g, ",");
         return result;
       },
     };
