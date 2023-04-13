@@ -31,17 +31,16 @@ const a3e1 = () => {
       alert("Both values must be numbers. Please try again.");
     }
   }
+  
   // Generate tweenty integer random numbers
   const array = Array.from({ length: 20 }, () =>
     Math.floor(Math.random() * (max - min + 1) + min)
   );
   // Include the given minimum and maximum values in the array
-  array[0] = min;
-  array[19] = max;
   console.log(array);
   // add leading zeros to the number
-  let resultMin = pad(min, 3);
-  let resultMax = pad(max, 3);
+  let resultMin = pad(Math.min(...array), 3);
+  let resultMax = pad(Math.max(...array), 3);
 
   // Logged the result
   console.log(`min value: ${resultMin}`);
