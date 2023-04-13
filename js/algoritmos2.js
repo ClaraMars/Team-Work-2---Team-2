@@ -45,14 +45,13 @@ const a2e5 = () => {
   /*let stringTest = 
      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic id facere repellendus quisquam accusamus expedita, non nobis iste, soluta maiores, fuga sunt aspernatur asperiores iusto quidem autem earum temporibus totam aperiam magni rerum alias minima? Nemo laborum deserunt, dolore voluptatem, corporis nam culpa iste odit possimus soluta, fuga non earum?"*/
   function stringManager(text, option) {
-
     // take the text input and check if the text was input
     text = prompt("Write here your text!");
 
-    if (text === "" || text === null){
+    if (text === "" || text === null) {
       alert("Sorry, you forgote to add a text, the operation is canceled");
-      return -1
-    } 
+      return -1;
+    }
     // Operations option
     const transformOps = {
       replaceChars: false,
@@ -71,7 +70,7 @@ const a2e5 = () => {
         // User clicked "cancel"
         alert("Operation canceled.");
         break;
-      }else if (option === "0"){
+      } else if (option === "0") {
         // User choose  "0" to "finished"
         alert("Operation complete.");
         break;
@@ -80,26 +79,29 @@ const a2e5 = () => {
         case "1":
           transformOps.replaceChars = true;
           break;
-          case "2":
-            transformOps.capitalize = true;
-            break;
-            case "3":
-              transformOps.replaceSpaces = true;
-              break;
-              default:
-                alert("Invalid option.");
-                continue;
-              }
-              const changes = `Options chose:
+        case "2":
+          transformOps.capitalize = true;
+          break;
+        case "3":
+          transformOps.replaceSpaces = true;
+          break;
+        default:
+          alert("Invalid option.");
+          continue;
+      }
+      const changes = `Options chose:
               Replace chars by signs? ${transformOps.replaceChars}
               Capitalize? ${transformOps.capitalize}
               Replace spaces with commas? ${transformOps.replaceSpaces}
-              Is it ok? `;
-              
-        const confirmed = confirm(changes);
-              if (!confirmed) {
-              break;
-            }
+              Would you Like to add more changes? `;
+
+      let confirmed = prompt(`${changes}(y/n)`);
+      while (confirmed !== "y" && confirmed !== "n") {
+        confirmed = prompt(`Please enter y or n. ${changes}(y/n)`);
+      }
+      if (confirmed === "n") {
+        break;
+      }
     }
 
     // Define operations object
@@ -129,15 +131,22 @@ const a2e5 = () => {
 
       replaceSpaces: function (text) {
         // Replace spaces with commas, unless there is a comma or a dot already in the word
-        let result = text.split(" ").map(word => { 
-          if (word.includes(",") || word.includes(".") || word.includes("?") ) {
-            return word;
-          } else {
-            return word + ",";
-          }
-        }).join("");
+        let result = text
+          .split(" ")
+          .map((word) => {
+            if (
+              word.includes(",") ||
+              word.includes(".") ||
+              word.includes("?")
+            ) {
+              return word;
+            } else {
+              return word + ",";
+            }
+          })
+          .join("");
         return result;
-      }
+      },
     };
 
     let result = text;
@@ -162,13 +171,12 @@ const a2e5 = () => {
     const endTime = performance.now();
     const timeOut = endTime - startTime;
 
-    
     // Count words and characters
     const wordCount = text.split(" ").length;
     const charCount = text.length;
     console.log(`${wordCount} words, ${charCount} char.`);
     console.log(`Elapsed time: ${timeOut} milliseconds`);
-    return result;   
+    return result;
   }
   stringManager();
 };
