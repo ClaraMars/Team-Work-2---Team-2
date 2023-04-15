@@ -34,6 +34,39 @@ const a1e1 = () => {
 
 //a1e1();
 
+//EJERCICIO 2
+//Escribe un programa que le pregunte al usuario un mes, y le indique cuantos días tiene ese mes. En caso de error, indicarle el mensaje: “That’s not a real month!”.
+
+const a1e2 = () => {
+  let notas = prompt("Choose a month").toLowerCase();
+
+  switch (notas) {
+    case "enero":
+    case "marzo":
+    case "mayo":
+    case "julio":
+    case "septiembre":
+    case "noviembre":
+      console.log("This month has 31 days");
+      break;
+    case "abril":
+    case "junio":
+    case "agosto":
+    case "septiembre":
+    case "diciembre":
+      console.log("This month has 30 days");
+      break;
+    case "febrero":
+      console.log("This month has 28 days");
+      break;
+    default:
+      console.log("Thats not a real month");
+      break;
+  }
+};
+
+//a1e2();
+
 //EJERCICIO 4
 //Escribe un programa que simula un semáforo. El semáforo estará controlado por una variable “centinela” llamada “isGreen”.
 //Si el semáforo está verde, mostrar por consola: “Cross the road”, en caso contrario mostrar: “Please wait”.
@@ -114,7 +147,7 @@ const a1e5 = () => {
     } while (solve !== true);
 };
 
-//a1e5()
+//a1e5();
 
 //EJERCICIO 6
 //Escribe un programa que pida al usuario email y contraseña. Deberá comparar los datos introducidos con los siguientes, que deberán estar guardados en variables:
@@ -138,6 +171,38 @@ const a1e6 = () => {
 };
 
 //a1e6();
+
+//EJERCICIO 7
+// Mediante una estructura switch, escribe un programa para convertir euros a:
+// • Dólar americano
+// • Yen Japonés
+// • Libra esterlina
+// • Franco suizo
+// Y muestre por consola el siguiente resultado: XXX euros equivalen a YYY dólares americanos, ZZZ yen japoneses, NNN libras esterlinas y MMM francos suizos. Aplicar template literal para mostrar el resultado.
+
+const a1e7 = () => {
+  let euros = prompt("Introduzca la cantidad en Euros");
+  let dolarAmericano = 1.07;
+  let yenJapones = 140.86;
+  let libraEsterlina = 0.88;
+  let francoSuico = 0.99;
+
+  switch (!isNaN(euros)) {
+    case true:
+      cambiodolar = euros * dolarAmericano;
+      cambioyen = euros * yenJapones;
+      cambiolibra = euros * libraEsterlina;
+      cambiofranco = francoSuico * euros;
+      break;
+    default:
+      console.log("Introduzca un valor numerico valido");
+      break;
+  }
+  let resultado = `Euros:${euros}\n Que en dolares son: ${cambiodolar}\n Que en Yenes Japoneses son: ${cambioyen}\n Que en Libra esterlina son:${cambiolibra}\n Que en Francos son: ${cambiofranco} Cambio en Francos`;
+  console.log(resultado);
+};
+
+//a1e7();
 
 //EJERCICIO 9
 // Preguntar al usuario su DNI o NIE. Comprobar, mediante las funciones para strings, si los datos

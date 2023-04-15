@@ -24,6 +24,22 @@ const a2e1 = () => {
 
 //a2e1();
 
+//EJERCICIO 2
+//Escribe un programa que muestre las letras del palíndromo “no lemon, no melon” en orden inverso.
+
+const a2e2 = () => {
+  function a2e2(cad) {
+    let separarCadena = cad.split("");
+    let invertirArray = separarCadena.reverse();
+    let unirArray = invertirArray.join("");
+    return unirArray;
+  }
+  
+  // console.log(a2e2("no lemon, no melon"));
+};
+
+//a2e2();
+
 //EJERCICIO 4
 //Escribe un programa con 7 variables con la temperatura de los 7 últimos días (Google). A continuación, muestra cuál ha sido la temperatura media.
 
@@ -249,3 +265,37 @@ const a2e6 = () => {
 };
 
 //a2e6();
+
+//EJERCICIO 7
+//Mediante el objeto Math, genera un número aleatorio entero entre 0 y 10, y guárdalo en una variable. A continuación pide al usuario que adivine el número. Tendrá como máximo 3 intentos. El programa debe mostrar el número de intentos disponibles. Si acierta, mostramos el mensaje: “You win!”. Si falla, pero le quedan intentos, mostramos el mensaje “Try it again”. Si agota los intentos y no ha conseguido acertar, mostramos el mensaje: “Sorry, Good luck in love”.
+
+const a2e7 = () => {
+let randomNumbersa2e7 = randomNumbers(10, 0);
+let intentosDisponibles = 3;
+// Pedimos el numero al usuario desde el prompt y lo comparamos en un bucle while
+while (intentosDisponibles > 0) {
+  const input = prompt(
+    `Adivina el número (te quedan ${intentosDisponibles} intentos):`
+  );
+// Verificamos si es correcto o no
+  if (!isNaN(input)) {
+    const numeroAdivinar = parseInt(input);
+
+    if (numeroAdivinar === randomNumbersa2e7) {
+      alert("¡You win!");
+      break;
+    } else {
+      intentosDisponibles--;
+      if (intentosDisponibles > 0) {
+        alert("Try it again");
+      } else {
+        alert("Sorry, Good luck in love");
+      }
+    }
+  } else {
+    alert("Introduce un caracter numérico");
+  }
+}
+};
+
+// a2e7();
