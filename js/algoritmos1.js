@@ -3,7 +3,38 @@ const randomNumbers = (max, min) => {
     return random;
 };
 
-//Ejercicio 5
+//EJERCICIO 1
+//Escribe un programa que indique en la consola cuantos días tiene el mes en curso, obteniendo el mes real del sistema.
+
+const a1e1 = () => {
+
+    let month = new Date().getMonth();
+    switch (month) {
+        case 0:
+        case 2:
+        case 4:
+        case 6:
+        case 7:
+        case 9:
+        case 11:
+            console.log("El mes actual tiene 31 días.");
+            break;
+        case 3:
+        case 5:
+        case 8:
+        case 10:
+            console.log("El mes actual tiene 30 días.");
+            break;
+        default:
+            console.log("El mes actual tiene 28 días.");
+            break;
+    };
+
+};
+
+//a1e1();
+
+//EJERCICIO 5
 // Teniendo en cuenta las siguientes temperaturas:
 // • Absolute Zero → -273.15°C
 // • Freezing point → 0°C
@@ -12,68 +43,65 @@ const randomNumbers = (max, min) => {
 // Escribe un programa que convierta estas temperaturas a Fahrenheit (mediante la estructura
 // switch). ** Buscar la fórmula en Google**
 
-
-//Versión 1.0
-// const a1e5 = () => {
-
-//     let celsius = parseInt(prompt("¿Cuál de las siguientes temperaturas quieres convertir a Farenheit?: Absolute Zero (-273.15°C), Freezing Point (0°C), Body Temperature (37°C) o Boiling Point (100°C)"));
-
-
-//     let farenheit;
-
-//     switch (celsius) {
-//         case -273.5:
-//             farenheit = celsius * (9/5) + 32;
-//             break;
-//         case 0:
-//             farenheit = celsius * (9/5) + 32;
-//             break;
-//         case 37:
-//             farenheit = celsius * (9/5) + 32;
-//             break;
-//         case 100:
-//             farenheit = celsius * (9/5) + 32;
-//             break;
-//         default:
-//             console.log("Por favor, introduce una temperatura correcta.")
-//             break;
-//     }
-//     return farenheit;
-// }
-
-// console.log(`La temperatura es de ${a1e5()}°F.`);
-
 const a1e5 = () => {
 
-    let celsius = parseInt(prompt("¿Cuál de las siguientes temperaturas quieres convertir a Farenheit?: \n Absolute Zero (-273.15°C)\n Freezing Point (0°C)\n Body Temperature (37°C)\n Boiling Point (100°C)"));
+    let solve = false;
 
+    do {
+        let temp = parseInt(prompt("¿Cuál de las siguientes temperaturas quieres convertir a Farenheit? Introduce el número correspondiente:\n 1. Absolute Zero (-273.15°C)\n 2. Freezing Point (0°C)\n 3. Body Temperature (37°C)\n 4. Boiling Point (100°C)"));
+        
+        let farenheit = 0;
+        switch (temp) {
+            case 1:
+                farenheit = -273.15 * (9/5) + 32;
+                solve = true;
+                break;
+            case 2:
+                farenheit = 0 * (9/5) + 32;
+                solve = true;
+                break;
+            case 3:
+                farenheit = 37 * (9/5) + 32;
+                solve = true;
+                break;
+            case 4:
+                farenheit = 100 * (9/5) + 32;
+                solve = true;
+                break;
+            default:
+                alert("Por favor, introduce una temperatura correcta.")
+                break;
+        };
+        console.log(`La temperatura es de ${farenheit.toFixed(2)}°F.`);
+    } while (solve !== true);
+};
 
-    let farenheit;
+//a1e5()
 
-    switch (celsius) {
-        case -273.5:
-            farenheit = celsius * (9/5) + 32;
-            break;
-        case 0:
-            farenheit = celsius * (9/5) + 32;
-            break;
-        case 37:
-            farenheit = celsius * (9/5) + 32;
-            break;
-        case 100:
-            farenheit = celsius * (9/5) + 32;
-            break;
-        default:
-            console.log("Por favor, introduce una temperatura correcta.")
-            break;
-    }
-    return Math.floor(farenheit);
-}
+//EJERCICIO 6
+//Escribe un programa que pida al usuario email y contraseña. Deberá comparar los datos introducidos con los siguientes, que deberán estar guardados en variables:
+//email: tolkien@lordofrings.com
+//password: aNBR6ZeWPY
+//En caso de que los datos introducidos sean correctos, mostrar una alerta con el mensaje: “Welcome Mr. Tolkien”, en caso contrario mostrar el mensaje: “Wrong password or email”.
 
-//console.log(`La temperatura es de ${a1e5()}°F.`);
+const a1e6 = () => {
 
-//Ejercicio 9
+    let userEmail = prompt("Introduce your email:");
+    let userPassword = prompt("Introduce your password:");
 
+    let correctEmail = "tolkien@lordofrings.com";
+    let correctPassword = "aNBR6ZeWPY";
+
+    if (userEmail === correctEmail && userPassword === correctPassword) {
+        alert("Welcome Mr. Tolkien");
+    } else {
+        alert("Wrong password or email.")
+    };
+};
+
+//a1e6();
+
+//EJERCICIO 9
 // Preguntar al usuario su DNI o NIE. Comprobar, mediante las funciones para strings, si los datos
 // introducidos son válidos, teniendo en cuenta lo siguiente.
 // • El NIE debe escribirse con la X o T inicial, todos los números y la letra final, sin espacios ni
@@ -81,42 +109,6 @@ const a1e5 = () => {
 // • El DNI está formado por ocho dígitos y un carácter alfabético de control. Ejemplo: 12345678ª.
 // ** Consultar la tabla ASCII para poder resolver el ejercicio. **
 
-//SOLUCIÓN SIN BUCLE
-// const a1e9 = () => {
-
-//     let document = prompt("Por favor, introduce tu DNI o NIE");
-//     console.log(document);
-
-//     if (document.length == 9) {
-
-//         let initial = document.slice(0, 1);
-//         let medium = document.slice(1, 8);
-//         let final = document.slice(8);
-        
-//         let nieInitial = /(X|T){1}/;
-//         let dniInitial = /[0-9]{1}/;
-
-//         let docMedium = /[0-9]{7}/g;
-
-//         let nieFinal = /[A-Z]{1}/;
-//         let dniFinal = final.charCodeAt(0);
-
-//         if (nieInitial.test(initial) == true && docMedium.test(medium) == true && nieFinal.test(final) == true) {
-//            console.log('El NIE introducido es correcto!');      
-//         } else if (dniInitial.test(initial) == true && docMedium.test(medium) == true && (dniFinal >= 32 && dniFinal <= 167)) {
-//            console.log('El DNI introducido es correcto!');
-//         } else {
-//             console.log("Por favor, revise los datos. El dato introducido no se corresponde con un DNI o NIE válido.");
-//         }
-//     } else {
-//         alert("Por favor, revise los datos. El dato introducido no es correcto.");
-//     }
-// }
-
-// a1e9();
-
-
-//SOLUCIÓN CON BUCLE
 const a1e9 = () => {
 
     let document = "";
@@ -152,6 +144,6 @@ const a1e9 = () => {
             }
         }
     } while (finalDoc !== true);
-}
+};
 
-// a1e9();
+//a1e9();
