@@ -29,7 +29,6 @@ const a1e1 = () => {
             console.log("El mes actual tiene 28 días.");
             break;
     };
-
 };
 
 //a1e1();
@@ -66,6 +65,33 @@ const a1e2 = () => {
 };
 
 //a1e2();
+
+//EJERCICIO 3
+//Escribe un programa que pregunte la temperatura exterior al usuario. Si la temperatura está por debajo de 15 grados, lanzar una alerta con el mensaje: “Warm up”. En caso de que la temperatura sea entre 15 grados y 25, lanzar una alerta con el mensaje: “Enjoy the weather!”. En caso de que la temperatura sea de más de 25 grados, lanzar la alerta con el mensaje: “Cool down”.
+
+const a1e3 = () => {
+  // Preguntamos la temperatura al usuario
+  let temperatura = prompt("¿Cuál es la temperatura exterior?");
+
+  // Si temperatura es menor a 15 mostrar "Warm up"
+  if (temperatura < 15) {
+    alert("Warm up");
+  }
+  // Si temperatura está entre 15 y 25 mostrar "Enjoy the weather!"
+  else if (temperatura >= 15 && temperatura <= 25) {
+    alert("Enjoy the weather!");
+  }
+  // Si temperatura es mayor a 25 mostrar "Cool down"
+  else if (temperatura > 25) {
+    alert("Cool down");
+  }
+  // Si se introduce una temperatura no válida mostrar mensaje de error
+  else {
+    alert("Introduce una temperatura válida!");
+  };
+};
+
+//a1e3();
 
 //EJERCICIO 4
 //Escribe un programa que simula un semáforo. El semáforo estará controlado por una variable “centinela” llamada “isGreen”.
@@ -203,6 +229,42 @@ const a1e7 = () => {
 };
 
 //a1e7();
+
+//EJERCICIO 8
+// Escribe un programa que pregunte al usuario 2 números y la operación a realizar (suma, resta, multi, divide). A continuación, mostrar el resultado de la operación requerida por consola.
+
+const a1e8 = () => {
+  // Solicita al usuario los números y la operación a realizar
+  const num1 = parseFloat(prompt("Introduce el primer número:"));
+  const num2 = parseFloat(prompt("Introduce el segundo número:"));
+  const operacion = prompt(
+    "Introduce la operación a realizar (suma, resta, multi, divide):"
+  );
+
+  // Verifica si num2 es cero si se está realizando una división
+
+  // Realiza la operación y muestra el resultado por consola
+  switch (operacion) {
+    case "suma":
+      console.log(`${num1} + ${num2} = ${num1 + num2}`);
+      break;
+    case "resta":
+      console.log(`${num1} - ${num2} = ${num1 - num2}`);
+      break;
+    case "multi":
+      console.log(`${num1} * ${num2} = ${num1 * num2}`);
+      break;
+      // Comprueba que el divisor no se igual a 0
+      if (operacion === "divide" && num2 === 0) {
+        console.log("No se puede dividir entre 0.");
+      } else {
+        console.log(`${num1} / ${num2} = ${num1 / num2}`);
+      }
+      break;
+  };
+};
+
+//a1e8();
 
 //EJERCICIO 9
 // Preguntar al usuario su DNI o NIE. Comprobar, mediante las funciones para strings, si los datos

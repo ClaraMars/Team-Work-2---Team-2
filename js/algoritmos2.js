@@ -40,6 +40,28 @@ const a2e2 = () => {
 
 //a2e2();
 
+//EJERCICIO 3
+// Escribe un programa para mostrar un cuadrado de asteriscos de 4x4.
+
+const a2e3 = () => {
+  // Bucle for para imprimir 4 filas
+  for (let i = 0; i < 4; i++) {
+    // Inicializa una cadena vacía para construir la fila
+    let fila = "";
+
+    // Bucle for para imprimir 4 asteriscos en cada fila
+    for (let j = 0; j < 4; j++) {
+      // Concatena un asterisco a la cadena de la fila
+      fila += "*";
+    };
+
+    // Imprime la fila completa con un salto de línea
+    console.log(fila);
+  };
+};
+
+//a2e3();
+
 //EJERCICIO 4
 //Escribe un programa con 7 variables con la temperatura de los 7 últimos días (Google). A continuación, muestra cuál ha sido la temperatura media.
 
@@ -213,6 +235,7 @@ const a2e5 = () => {
   }
   stringManager();
 };
+
 // a2e5();
 
 //EJERCICIO 6
