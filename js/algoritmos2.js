@@ -35,7 +35,7 @@ const a2e2 = () => {
     return unirArray;
   }
   
-  // console.log(a2e2("no lemon, no melon"));
+  console.log(a2e2("no lemon, no melon"));
 };
 
 //a2e2();
@@ -44,20 +44,15 @@ const a2e2 = () => {
 // Escribe un programa para mostrar un cuadrado de asteriscos de 4x4.
 
 const a2e3 = () => {
-  // Bucle for para imprimir 4 filas
-  for (let i = 0; i < 4; i++) {
-    // Inicializa una cadena vacía para construir la fila
-    let fila = "";
-
-    // Bucle for para imprimir 4 asteriscos en cada fila
-    for (let j = 0; j < 4; j++) {
-      // Concatena un asterisco a la cadena de la fila
-      fila += "*";
+  
+  let fila = ""; // Inicializa una cadena vacía para construir la fila
+  for (let i = 0; i < 4; i++) { // Bucle for para imprimir 4 filas
+    for (let j = 0; j < 4; j++) { // Bucle for para imprimir 4 asteriscos en cada fila  
+      fila += "*"; // Concatena un asterisco a la cadena de la fila
     };
-
-    // Imprime la fila completa con un salto de línea
-    console.log(fila);
+    fila += "\n";
   };
+  console.log(fila);  // Imprime la fila completa con un salto de línea
 };
 
 //a2e3();
@@ -322,3 +317,120 @@ while (intentosDisponibles > 0) {
 };
 
 // a2e7();
+
+//EJERCICIO 8
+// Investigando como obtener caracteres a partir de valores ASCII, vamos a crear un generador de contraseñas.
+// En primer lugar, pregunta al usuario cuantos caracteres tendrá la contraseña deseada, (mínimo 8 y máximo 16).
+// A continuación, pregunta si quiere incluir, paso a paso, cada uno de los siguientes caracteres: minúsculas, mayúsculas, números y símbolos.
+// En caso de que el usuario diga que no a las 4 posibilidades, la contraseña estará hecha en minúsculas.
+// Cada carácter será generado con la siguiente fórmula: • Math.floor(Math.random() * (max + min + 1) + min;
+// En una función que devuelva números enteros aleatorios, y reciba 2 parámetros.
+// La contraseña generada debe ser mostrada con alert().
+// ** Bonus opcional: asegura que la contraseña no contiene 2 caracteres iguales seguidos. **
+
+const a2e8 = () => {
+  const length = parseInt(prompt("Indique el número de caracteres para generar la contraseña. (Mínimo 8 y máximo 16)."));
+
+  if (length >= 8 && length <= 16) {
+
+      //Generación aleatoria de parámetros
+      let randomMin = Math.round(Math.random() * (length -1) +1);
+      let randomMay = Math.round(Math.random() * (length -1) +1);
+      let randomNum = Math.round(Math.random() * (length -1) +1);
+      let randomSim = Math.round(Math.random() * (length -1) +1);
+
+      let totalRandom;
+      let randomMin2, randomMay2, randomNum2, randomSim2;
+      let total;
+
+      //Inclusión de parámetros
+      let minusculasPrompt = prompt("¿Quieres incluir minúsculas?");
+      let mayusculasPrompt = prompt("¿Quieres incluir mayúsculas?");
+      let numerosPrompt = prompt("¿Quieres incluir números?");
+      let simbolosPrompt = prompt("¿Quieres incluir símbolos?");
+
+      let promptTest = /^(y|n)$/;
+
+      if (promptTest.test(minusculasPrompt) == true && promptTest.test(mayusculasPrompt) == true && promptTest.test(numerosPrompt) == true && promptTest.test(simbolosPrompt) == true) {
+          let password = "";
+
+          //Bucle do-while para la actualización del totalRandom
+          let contador = 0;
+
+          do {
+              //Minúsculas
+              if (minusculasPrompt === "y") {
+                  randomMin2 = Math.round((randomMin * length) / totalRandom);
+                  if (randomMin2 < 0.5) randomMin2 = 0.5;
+
+                  for (let index = 0; index < randomMin2; index++) {
+                      let minusculas = (String.fromCharCode(randomNumbers(122, 97)));
+                      password += `${minusculas}`;
+                  };
+              } else {
+                  randomMin = 0;
+              };
+
+              //Mayúsculas
+              if (mayusculasPrompt === "y") {
+                  randomMay2 = Math.round((randomMay * length) / totalRandom);
+                  if (randomMay2 < 0.5) randomMay2 = 0.5;
+
+                  for (let index = 0; index < randomMay2; index++) {
+                      let mayusculas = (String.fromCharCode(randomNumbers(90, 65)));
+                      password += `${mayusculas}`;
+                  };
+              } else {
+                  randomMay = 0;
+              };
+
+              //Números
+              if (numerosPrompt === "y") {
+                  randomNum2 = Math.round((randomNum * length) / totalRandom);
+                  if (randomNum2 < 0.5) randomNum2 = 0.5;
+
+                  for (let index = 0; index < randomNum2; index++) {
+                      let numeros = (String.fromCharCode(randomNumbers(57, 48)));
+                      password += `${numeros}`;
+                  };
+              } else {
+                  randomNum = 0;
+              };
+
+              //Símbolos
+              if (simbolosPrompt === "y") {
+                  randomSim2 = length - (randomMin2 + randomMay2 + randomNum2);
+
+                  for (let index = 0; index < randomSim2; index++) {
+                      let simbolos = (String.fromCharCode(randomNumbers(47, 33)));
+                      password += `${simbolos}`;
+                  };
+              } else {
+                  randomSim = 0;
+              };
+
+              totalRandom = randomMin + randomMay + randomNum + randomSim;
+              contador++;
+              
+          } while (contador < 2);
+
+          //Contraseña minúsculas por defecto
+          if (minusculasPrompt === "n" && mayusculasPrompt === "n" && numerosPrompt === "n" && simbolosPrompt === "n") {
+              for (let index = 0; index < length; index++) {
+                  let minusculas = (String.fromCharCode(randomNumbers(122, 97)));
+                  password += `${minusculas}`;
+              };
+          };
+          
+          let shuffledPassword = password.split("").sort(function () {return 0.5 - Math.random()}).join("");
+          alert(shuffledPassword);
+
+      } else {
+          alert("Por favor, introduzca 'y' para sí o 'n' para no.");
+      };
+  } else {
+      alert("Por favor, introduzca una longitud numérica válida.");
+  };
+};
+
+//a2e8();

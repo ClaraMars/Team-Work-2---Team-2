@@ -150,7 +150,7 @@ const a3e3 = () => {
   });
 };
 
-//a3e3();
+a3e3();
 
 // EJERCICIO 4
 // Para verificar el DNI, se divide el número entre 23 y el resto se sustituye por una letra que se determina por la siguiente tabla.
@@ -202,48 +202,31 @@ const a3e4Bonus = () => {
 // • No se permiten las consonantes Ñ ni Q
 // El número de matrículas aleatorias será a petición del usuario.
 
-// Función que pide al usuario un número de matrículas y genera esa cantidad de matrículas aleatorias
 const a3e5 = () => {
-  // Pide al usuario la cantidad de matrículas que desea generar
-  const cantidad = parseInt(prompt("¿Cuántas matrículas deseas generar?"));
 
-  // Comprueba si la cantidad introducida es un número válido y mayor que cero
-  if (isNaN(cantidad) || cantidad <= 0) {
-    // Si la cantidad no es válida, muestra un mensaje de error
-    console.log("Cantidad inválida.");
-  } else {
-    // Si la cantidad es válida, genera la cantidad de matrículas aleatorias indicada y las muestra por consola
-    for (let i = 0; i < cantidad; i++) {
-      const matricula = generarMatricula();
+  //Función que genera matrículas aleatorias
+  const matriculaGenerator = () => {
+      let numbers = randomNumbers(9999, 0000).toString();
+      numbers = numbers.padStart(4, "0");
+      
+      let exclude = [69, 73, 79, 81, 85];
+
+      let letter = String.fromCharCode(randomNumbers(90, 66), randomNumbers(90, 66), randomNumbers(90, 66));
+      while (exclude.some(num => letter.includes(String.fromCharCode(num)))) {
+          letter = String.fromCharCode(randomNumbers(90, 66), randomNumbers(90, 66), randomNumbers(90, 66));
+      };
+  
+      let matricula = numbers + letter;
       console.log(matricula);
-    };
   };
+
+  let matriculaNum = parseInt(prompt("¿Cuántas matrículas quieres?"));
+  for (let index = 0; index < matriculaNum; index++) {
+      matriculaGenerator();
+  }
 };
 
-// Función flecha que genera la cantidad de matrículas aleatorias indicada por el usuario
-const a3e52 = () => {
-  // Pide al usuario la cantidad de matrículas que desea generar
-  const cantidad = parseInt(prompt("¿Cuántas matrículas deseas generar?"));
-
-  // Comprueba si la cantidad introducida es un número válido y mayor que cero
-  isNaN(cantidad) || cantidad <= 0
-    ? console.log("Cantidad inválida.")
-    : // Genera la cantidad de matrículas aleatorias indicada y las muestra por consola
-      Array.from({ length: cantidad }, () =>
-        console.log(
-          // Genera un número de cuatro dígitos aleatorio y lo convierte a una cadena de caracteres, rellenando con ceros a la izquierda si es necesario
-          Math.floor(Math.random() * 10000)
-            .toString()
-            .padStart(4, "0") +
-            // Genera tres letras aleatorias y las añade a la cadena de la matrícula
-            [...Array(3)]
-              .map(
-                () => "BCDFGHJKLMNPQRSTVWXYZ"[Math.floor(Math.random() * 20)]
-              )
-              .join("")
-        );
-      );
-};
+//a3e5();
 
 //EJERCICIO 6
 //Recopila 20 citas aleatorias de una temática a tu elección, y almacénalas en un array. A continuación, investiga las funciones setInterval y setTimeout para generar una cita aleatoria, que se mostrará en consola, cada 10 segundos, durante 2 minutos.

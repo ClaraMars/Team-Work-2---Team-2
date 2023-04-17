@@ -71,24 +71,24 @@ const a1e2 = () => {
 
 const a1e3 = () => {
   // Preguntamos la temperatura al usuario
-  let temperatura = prompt("¿Cuál es la temperatura exterior?");
+  let temperatura = prompt("Introduce the outside temperature:");
+  let tempTest = /^[0-9]+$/;
 
-  // Si temperatura es menor a 15 mostrar "Warm up"
-  if (temperatura < 15) {
-    alert("Warm up");
+  if (tempTest.test(temp) == true) {
+    
+    if (temperatura < 15) { // Si temperatura es menor a 15 mostrar "Warm up"
+      alert("Warm up");
+    } else if (temperatura >= 15 && temperatura <= 25) { // Si temperatura está entre 15 y 25 mostrar "Enjoy the weather!"
+      alert("Enjoy the weather!");
+    } else if (temperatura > 25) { // Si temperatura es mayor a 25 mostrar "Cool down"
+      alert("Cool down");
+    } else { // Si se introduce una temperatura no válida mostrar mensaje de error
+      alert("Introduce una temperatura válida!");
+    };
+    
+  } else {
+    alert("Please, introduce a valid temperature.")
   }
-  // Si temperatura está entre 15 y 25 mostrar "Enjoy the weather!"
-  else if (temperatura >= 15 && temperatura <= 25) {
-    alert("Enjoy the weather!");
-  }
-  // Si temperatura es mayor a 25 mostrar "Cool down"
-  else if (temperatura > 25) {
-    alert("Cool down");
-  }
-  // Si se introduce una temperatura no válida mostrar mensaje de error
-  else {
-    alert("Introduce una temperatura válida!");
-  };
 };
 
 //a1e3();
@@ -221,7 +221,7 @@ const a1e7 = () => {
       cambiofranco = francoSuico * euros;
       break;
     default:
-      console.log("Introduzca un valor numerico valido");
+      console.log("Introduzca un valor numérico válido");
       break;
   }
   let resultado = `Euros:${euros}\n Que en dolares son: ${cambiodolar}\n Que en Yenes Japoneses son: ${cambioyen}\n Que en Libra esterlina son:${cambiolibra}\n Que en Francos son: ${cambiofranco} Cambio en Francos`;
@@ -237,31 +237,39 @@ const a1e8 = () => {
   // Solicita al usuario los números y la operación a realizar
   const num1 = parseFloat(prompt("Introduce el primer número:"));
   const num2 = parseFloat(prompt("Introduce el segundo número:"));
-  const operacion = prompt(
-    "Introduce la operación a realizar (suma, resta, multi, divide):"
-  );
 
-  // Verifica si num2 es cero si se está realizando una división
+  let numTest = /^[0-9]+$/;
 
-  // Realiza la operación y muestra el resultado por consola
-  switch (operacion) {
-    case "suma":
-      console.log(`${num1} + ${num2} = ${num1 + num2}`);
-      break;
-    case "resta":
-      console.log(`${num1} - ${num2} = ${num1 - num2}`);
-      break;
-    case "multi":
-      console.log(`${num1} * ${num2} = ${num1 * num2}`);
-      break;
-      // Comprueba que el divisor no se igual a 0
-      if (operacion === "divide" && num2 === 0) {
-        console.log("No se puede dividir entre 0.");
-      } else {
-        console.log(`${num1} / ${num2} = ${num1 / num2}`);
-      }
-      break;
-  };
+  if (numTest.test(num1) == true && numTest.test(num2)) {
+  
+    const operacion = prompt("Introduce la operación a realizar (suma, resta, multi, divide):");
+
+    // Verifica si num2 es cero si se está realizando una división
+
+    // Realiza la operación y muestra el resultado por consola
+    switch (operacion) {
+      case "suma":
+        console.log(`${num1} + ${num2} = ${num1 + num2}`);
+        break;
+      case "resta":
+        console.log(`${num1} - ${num2} = ${num1 - num2}`);
+        break;
+      case "multi":
+        console.log(`${num1} * ${num2} = ${num1 * num2}`);
+        break;
+      case "divide":
+        // Comprueba que el divisor no se igual a 0
+        if (num2 == 0) {
+          console.log("No se puede dividir entre 0.");
+        } else {
+          console.log(`${num1} / ${num2} = ${num1 / num2}`);
+        }
+        break;
+    };
+
+  } else {
+    console.log("Por favor, introduce un número válido.")
+  }
 };
 
 //a1e8();
