@@ -3,56 +3,6 @@ const randomNumbers = (max, min) => {
   return random;
 };
 
-const generarMatricula = () => {
-  // Genera un número de cuatro dígitos aleatorio y lo convierte a una cadena de caracteres, rellenando con ceros a la izquierda si es necesario
-  const numeros = Math.floor(Math.random() * 10000)
-    .toString()
-    .padStart(4, "0");
-
-  // Define un array de letras permitidas en la matrícula, excluyendo las vocales, la letra 'Q' y la letra 'Ñ'
-  const letrasPermitidas = [
-    "B",
-    "C",
-    "D",
-    "F",
-    "G",
-    "H",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "P",
-    "R",
-    "S",
-    "T",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
-
-  // Crea una cadena de caracteres vacía para almacenar las letras de la matrícula
-  let letras = "";
-
-  // Genera tres letras aleatorias y las añade a la cadena de letras de la matrícula
-  for (let i = 0; i < 3; i++) {
-    // Obtiene un número aleatorio entre 0 y la longitud del array de letras permitidas
-    const indiceAleatorio = Math.floor(Math.random() * letrasPermitidas.length);
-
-    // Añade la letra correspondiente al índice aleatorio obtenido al array de letras de la matrícula
-    letras += letrasPermitidas[indiceAleatorio];
-  }
-
-  // Combina el número de la matrícula con las letras generadas para formar la matrícula completa
-  const matricula = numeros + letras;
-
-  // Devuelve la matrícula generada
-  return matricula;
-};
-
-
 //EJERCICIO 1
 //Escribe un programa que pregunte al usuario los límites máximo y mínimo, y genere un array de 20 números aleatorios entre esos valores, 
 //ambos incluidos. Luego mostrará el valor más alto y el más bajo dentro del array, con el siguiente formato (por consola):
@@ -150,7 +100,7 @@ const a3e3 = () => {
   });
 };
 
-a3e3();
+//a3e3();
 
 // EJERCICIO 4
 // Para verificar el DNI, se divide el número entre 23 y el resto se sustituye por una letra que se determina por la siguiente tabla.
