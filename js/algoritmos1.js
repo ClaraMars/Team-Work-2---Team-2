@@ -8,7 +8,15 @@ const randomNumbers = (max, min) => {
 
 const a1e1 = () => {
 
-    let month = new Date().getMonth();
+  let month = new Date().getMonth();
+    // let month = new Date();
+    // console.log((month.getMonth()).getDate());
+
+
+    // let today = new Date();
+    // let antonio= new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
+    // console.log(antonio)
+
     switch (month) {
         case 0:
         case 2:
@@ -44,15 +52,15 @@ const a1e2 = () => {
     case "marzo":
     case "mayo":
     case "julio":
-    case "septiembre":
-    case "noviembre":
+    case "agosto":
+    case "octubre":
+    case "diciembre":
       console.log("This month has 31 days");
       break;
     case "abril":
     case "junio":
-    case "agosto":
     case "septiembre":
-    case "diciembre":
+    case "noviembre":
       console.log("This month has 30 days");
       break;
     case "febrero":
@@ -71,24 +79,17 @@ const a1e2 = () => {
 
 const a1e3 = () => {
   // Preguntamos la temperatura al usuario
-  let temperatura = prompt("Introduce the outside temperature:");
-  let tempTest = /^[0-9]+$/;
-
-  if (tempTest.test(temp) == true) {
+  let temperatura = parseInt(prompt("Introduce the outside temperature:"));
     
     if (temperatura < 15) { // Si temperatura es menor a 15 mostrar "Warm up"
       alert("Warm up");
-    } else if (temperatura >= 15 && temperatura <= 25) { // Si temperatura está entre 15 y 25 mostrar "Enjoy the weather!"
+    } else if (temperatura <= 25) { // Si temperatura está entre 15 y 25 mostrar "Enjoy the weather!"
       alert("Enjoy the weather!");
     } else if (temperatura > 25) { // Si temperatura es mayor a 25 mostrar "Cool down"
       alert("Cool down");
     } else { // Si se introduce una temperatura no válida mostrar mensaje de error
-      alert("Introduce una temperatura válida!");
+      alert("Write a real temperature!");
     };
-    
-  } else {
-    alert("Please, introduce a valid temperature.")
-  }
 };
 
 //a1e3();
@@ -258,7 +259,7 @@ const a1e8 = () => {
         console.log(`${num1} * ${num2} = ${num1 * num2}`);
         break;
       case "divide":
-        // Comprueba que el divisor no se igual a 0
+        // Comprueba que el divisor no sea igual a 0
         if (num2 == 0) {
           console.log("No se puede dividir entre 0.");
         } else {
@@ -284,42 +285,72 @@ const a1e8 = () => {
 
 const a1e9 = () => {
 
-    let document = "";
-    let finalDoc = false;
+  let document = "";
+  let validDoc = false;
 
-    do {
-        document = prompt("Introduce tu DNI o NIE:");
+  do {
+    document = prompt("Introduce tu DNI o NIE:");
 
-        let initial = document.slice (0, 1);
-        let medium = document.slice(1, 8);
-        let final = document.slice(8);
-        
-        
-        if (document.length !== 9) {
-            console.log("Por favor, revise los datos. El dato introducido no es correcto.");
-        } else {
+    if (document.length !== 9) {
+      console.log("Por favor, revise los datos. El dato introducido no es correcto.");
+    } else {
+      let initial = document.slice (0, 1);
+      let medium = document.slice(1, 8);
+      let final = document.slice(8);
 
-            let numbers = /[0-9]{7}/;
-
-            let nieFinal = /[A-Z]{1}/;
+      let dniLetter = final.charCodeAt(0);
             
-            let dniInitial = /[0-9]{1}/;
-            let dniFinal = final.charCodeAt(0);
-            
-            if ((document.startsWith("X", 0) || document.startsWith("T", 0)) && numbers.test(medium) == true && nieFinal.test(final) == true) {
-                console.log("El NIE introducido es correcto!");
-                finalDoc = true;
-            } else if (dniInitial.test(initial) == true && numbers.test(medium) == true && (dniFinal >= 65 && dniFinal <= 90)) {
-                console.log("El DNI introducido es correcto!");
-                finalDoc = true;
-            } else {
-                console.log("Los datos introducidos no se corresponden con un DNI o NIE válido.")
-            }
-        }
-    } while (finalDoc !== true);
+      if (/(X|T)/.test(initial) == true && /[0-9]{7}/.test(medium) == true && /[A-Z]{1}/.test(final) == true){
+        initial?console.log("El NIE introducido es correcto!"):console.log("El NIE introducido no es correcto!");
+        validDoc = true;
+      } else if (/[0-9]{1}/.test(initial) == true && /[0-9]{7}/.test(medium) == true && (dniLetter >= 65 && dniLetter <= 90)) {
+        initial?console.log("El DNI introducido es correcto!"):console.log("El DNI introducido no es correcto!");
+        validDoc = true;
+      } else {
+        console.log("Los datos introducidos no se corresponden con un DNI o NIE válido.")
+      }
+    }
+  } while (validDoc !== true);
 };
 
 //a1e9();
+
+// const a1e9 = () => {
+
+//     let document = "";
+//     let validDoc = false;
+
+//     do {
+//         document = prompt("Introduce tu DNI o NIE:");
+
+//         if (document.length !== 9) {
+//             console.log("Por favor, revise los datos. El dato introducido no es correcto.");
+//         } else {
+//             let initial = document.slice (0, 1);
+//             let medium = document.slice(1, 8);
+//             let final = document.slice(8);
+
+//             let numbers = /[0-9]{7}/;
+
+//             let nieFinal = /[A-Z]{1}/;
+            
+//             let dniInitial = /[0-9]{1}/;
+//             let dniFinal = final.charCodeAt(0);
+            
+//             if ((document.startsWith("X", 0) || document.startsWith("T", 0)) && numbers.test(medium) == true && nieFinal.test(final) == true) {
+//                 console.log("El NIE introducido es correcto!");
+//                 validDoc = true;
+//             } else if (dniInitial.test(initial) == true && numbers.test(medium) == true && (dniFinal >= 65 && dniFinal <= 90)) {
+//                 console.log("El DNI introducido es correcto!");
+//                 validDoc = true;
+//             } else {
+//                 console.log("Los datos introducidos no se corresponden con un DNI o NIE válido.")
+//             }
+//         }
+//     } while (validDoc !== true);
+// };
+
+// //a1e9();
 
 //EJERCICIO 10
 //Investiga el objeto Math, y genera 2 números aleatorios, entre 1 y 6, para simular un juego de dados. Comprueba los resultados obtenidos y
